@@ -10,11 +10,11 @@ var pluckFirstLineFromFile = function (filePath, cb) {
   let firstLine;
   fs.readFile(filePath, {encoding: 'utf8'}, (error, data) => {
     if (error) {
-      cb(error);
+      cb(error, null);
       throw error;
     }
     firstLine = data.split('\n')[0];
-    cb(error, firstLine);
+    cb(null, firstLine);
 
   });
 };
@@ -23,9 +23,9 @@ var pluckFirstLineFromFile = function (filePath, cb) {
 var getStatusCode = function (url, callback) {
   request(url, (error, response, body) => {
     if (error) {
-      callback(error);
+      callback(error, null);
     } else {
-      callback(error, response.statusCode);
+      callback(null, response.statusCode);
     }
   });
 };
