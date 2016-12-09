@@ -45,7 +45,9 @@ describe('Basic chaining', function() {
     it('should eventually write a GitHub profile to a file', function(done) {
       fetchProfileAndWriteToFile(fileWithGithubHandle, fileToWriteTo)
         .then(function() {
-          var profile = JSON.parse(fs.readFileSync(fileToWriteTo, 'utf8'));
+          console.log('before parse');
+          var profile = JSON.parse(fs.readFileSync(fileToWriteTo, {encoding: 'utf8'}));
+          console.log(profile, 'after parse');
           expect(profile.id).to.equal(6980359);
           done();
         })
